@@ -12,3 +12,6 @@ class Disciplina(models.Model):
     nome = models.CharField(max_length=50)
     carga_horaria = models.IntegerField()
     codigo = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nome
