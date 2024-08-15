@@ -1,1 +1,2 @@
-###This is a repository for the PI course.
+# PI
+This is a repository for the PI course.
