@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block header %}
+    <h1 class="text-center text-2xl">Matrícula de Aluno</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="flex flex-col justify-center items-center">
+        <form class="w-1/2 flex flex-col gap-5" method="post" action="."> {% csrf_token %}
+            {% for field in form %}
+                <div class="w-full">
+                    <label for="{{ field.id_for_label }}" class="font-medium text-gray-700 block mb-1">{{ field.label }}</label>
+                    {{ field|add_class:"w-full p-1 border border-gray-300 rounded" }}
+                    {% if field.errors %}
+                        <ul>
+                            {% for error in field.errors %}
+                                <li class="text-red-500">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="flex justify-between">
+                <a href="{% url 'matricula:listar_alunos' %}" class="flex self-end bg-red-600 text-slate-50 px-2 py-1 rounded cursor-pointer hover:bg-red-500 duration-300">Cancelar</a>
+
+                <input type="submit" value="Cadastrar" class="flex self-end bg-indigo-600 text-slate-50 px-2 py-1 rounded cursor-pointer hover:bg-indigo-500 duration-300">
+            </div>
+        </from>
+    </div>
+{% endblock %}
