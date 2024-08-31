@@ -1,5 +1,68 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <section class="relative pb-24">
+        <div class="w-full bg-gray-950 flex justify-center">
+            <img class="w-full h-48" src="https://www.enfoquems.com.br/wp-content/uploads/2020/09/corinthians_p000Pmj_widexl.jpeg" alt="Corinthians">
+        </div>
+        <div class="absolute bottom-0 left-20 flex items-center">
+            <img class="h-32 w-32 rounded-full" src="{% static 'blog/perfil.jpeg' %}" alt="perfil">
+            <div class="ml-8 flex flex-col gap-1">
+                <h1 class="text-2xl">Adryan</h1>
+                <p class="text-sm text-gray-500">Sou desenvolvedor de software</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
 
 {% block content %}
-    <h1>OI</h1>
+    <section class="p-12 flex flex-col gap-12">
+        <div class="h-1 bg-gray-200 rounded-full"></div>
+        <article class="flex">
+            <div class="w-96">
+                <h2 class="font-bold text-lg">Sobre mim</h2>
+            </div>
+            <div class="flex flex-col gap-4 w-full">
+                <p class="text-gray-500 indent-8 text-justify">Atualmente sou aluno do IFRN, e estou no 4 ano de informática matutino do campus Pau dos Ferros. Tenho grande apreço pela a área da tecnologia e sempre busco inovações e aperfeiçoamento das minhas habilidades.</p>
+                <div class="flex flex-col gap-6">
+                    <h3 class="text-fuchsia-900 font-bold">Redes sociais</h3>
+                    <div class="bg-gray-200 rounded-lg p-6 flex gap-12">
+                        {% for rede in redes_sociais %}
+                            <div class="flex flex-col gap-2">
+                                <p class="text-fuchsia-800 font-semibold">{{ rede.nome }}</p>
+                                <a href="{{ rede.url }}" target="_blank" class="text-fuchsia-900 font-bold">{{ rede.nome_usuario }} <i class="fa-solid fa-link"></i></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="flex">
+            <div class="w-96">
+                <h2 class="font-bold text-lg">Experiência</h2>
+            </div>
+            <div class="flex flex-col gap-12 w-full">
+                <div class="flex flex-col gap-4">
+                    <h3 class="text-fuchsia-900 font-bold">Cursos</h3>
+                    <div class="flex flex-wrap grow gap-12">
+                        {% for curso in cursos %}
+                            <div class="flex flex-col gap-4 border rounded p-2 border-inherit w-1/3 flex-wrap">
+                                <div class="flex gap-4">
+                                    <img src="/media/{{ curso.logo }}" class="h-16 w-16 rounded-full object-cover" alt="">
+                                    <div>
+                                        <p class="text-lg font-semibold">{{ curso.nome }}</p>
+                                        <p class="text-gray-500">{{ curso.descricao }}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 text-sm">{{ curso.data_inicio }} - {% if curso.data_final %} {{curso.data_final}} {% else %} presente {% endif %}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
 {% endblock %}
